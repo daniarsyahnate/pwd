@@ -24,7 +24,7 @@ var_dump($m['nama']);
 <body>
   <h3>Detail Mahasiswa</h3>
   <ul>
-    <li><img src="img/<?= $m['gambar']; ?>"></li>
+    <li><img src="img/<?= $m['gambar']; ?>" width="197" height="256"></li>
     <li><?= $m['nama']; ?></li>
     <li><?= $m['nrp']; ?></li>
     <li><?= $m['email']; ?></li>
