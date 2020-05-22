@@ -3,7 +3,7 @@ require 'functions.php';
 
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
-// Ketika tombol Cari diklik
+// Ketika tombol Cari di klik
 if (isset($_POST['cari'])) {
   $mahasiswa = cari($_POST['keyword']);
 }
@@ -40,15 +40,6 @@ if (isset($_POST['cari'])) {
       <th>nama</th>
       <th>aksi</th>
     </tr>
-    <?php if (empty($mahasiswa)) : ?>
-      <tr>
-        <td colspan="4">
-          <p style="color: red ; font-style: italic;">data tidak ditemukan!</p>
-        </td>
-      </tr>
-
-    <?php endif; ?>
-
     <?php $i = 1;
     foreach ($mahasiswa as $m) : ?>
       <tr>
