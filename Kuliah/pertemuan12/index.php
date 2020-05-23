@@ -1,9 +1,16 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+  header("location: login.php");
+  exit;
+}
+
 require 'functions.php';
 
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
-// Ketika tombol Cari di klik
+// Ketika tombol Cari diklik
 if (isset($_POST['cari'])) {
   $mahasiswa = cari($_POST['keyword']);
 }
@@ -20,6 +27,8 @@ if (isset($_POST['cari'])) {
 </head>
 
 <body>
+  <a href="logout.php">Logout</a>
+
   <h3>Daftar Mahasiswa</h3>
 
   <a href="tambah.php">Tambah Data Mahasiswa</a>
@@ -40,6 +49,15 @@ if (isset($_POST['cari'])) {
       <th>nama</th>
       <th>aksi</th>
     </tr>
+    <?php if (empty($mahasiswa)) : ?>
+      <tr>
+        <td colspan="4">
+          <p style="color: red ; font-style: italic;">data tidak ditemukan!</p>
+        </td>
+      </tr>
+
+    <?php endif; ?>
+
     <?php $i = 1;
     foreach ($mahasiswa as $m) : ?>
       <tr>

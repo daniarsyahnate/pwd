@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+  header("location: login.php");
+  exit;
+}
+
 require 'functions.php';
 //  jika tida ada id di url
 if (!isset($_GET['id'])) {

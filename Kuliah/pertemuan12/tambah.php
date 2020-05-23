@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+  header("location: login.php");
+  exit;
+}
+
 require 'functions.php';
 
 // apakah tombol tambah sudah di tekan

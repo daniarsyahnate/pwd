@@ -84,4 +84,41 @@ function ubah($data)
 function cari($keyword)
 {
   $conn = koneksi();
+
+  $query = "SELECT * FROM mahasiswa 
+            WHERE 
+            nama LIKE '%$keyword%' OR
+            nrp LIKE '%$keyword%'
+            ";
+
+  $result = mysqli_query($conn, $query);
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
+
+function login($data)
+{
+  $conn = koneksi();
+
+  $username = htmlspecialchars($data['username']);
+  $password = htmlspecialchars($data['password']);
+
+  if (query("SELECT * FROM user WHERE username = '$username' && password = '$password'")) {
+
+    // set session dulu
+    $_SESSION['login'] = true;
+
+    header("location: index.php");
+    exit;
+  } else {
+    return [
+      'error' => true,
+      'pesan' => 'Username / Password salah!'
+    ];
+  }
 }
